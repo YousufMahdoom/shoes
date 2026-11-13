@@ -162,3 +162,4 @@ When presenting this website to potential footwear retailers or business clients
 - Designed and engineered for **MOD SHOES**.
 - Photography sourced from curated editorial footwear creators via Unsplash.
 - Built for international footwear brand presentation and portfolio demonstration.
+

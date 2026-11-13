@@ -280,6 +280,10 @@ class ProductDetailsController {
                 if (!isOpen) {
                     item.classList.add('open');
                 }
+
+                setTimeout(() => {
+                    if (window.modAnimations) window.modAnimations.refreshScroll();
+                }, 350);
             });
         });
 
@@ -327,6 +331,10 @@ class ProductDetailsController {
         if (window.modCart) {
             window.modCart.updateWishlistIcons();
         }
+
+        if (window.modAnimations) {
+            window.modAnimations.refreshScroll();
+        }
     }
 }
 
@@ -336,3 +344,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.modProductDetails = new ProductDetailsController();
     }
 });
+

@@ -740,3 +740,4 @@ function getRelatedProducts(currentId, category, limit = 4) {
     const others = PRODUCTS.filter(p => p.id !== currentId && p.category !== category);
     return [...sameCategory, ...others].slice(0, limit);
 }
+

@@ -838,3 +838,4 @@ function showToast(message, type = 'info') {
 
 // Instantiate globally
 window.modCart = new CartManager();
+

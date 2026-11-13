@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body class="loading">
+<body>
 
     <!-- Custom Desktop Cursor -->
     <div id="customCursorDot" class="custom-cursor-dot"></div>
@@ -601,7 +601,7 @@
             </div>
         </div>
 
-        <div class="drawer-body">
+        <div class="drawer-body" data-lenis-prevent>
             <!-- Empty state -->
             <div class="drawer-empty-state" id="cartDrawerEmpty">
                 <i data-lucide="shopping-bag"></i>
@@ -656,7 +656,7 @@
                 <i data-lucide="x"></i>
             </button>
         </div>
-        <div class="drawer-body">
+        <div class="drawer-body" data-lenis-prevent>
             <div class="drawer-empty-state" id="wishlistDrawerEmpty">
                 <i data-lucide="heart"></i>
                 <h3>No Saved Pairs Yet</h3>
@@ -671,7 +671,7 @@
 
     <!-- 4. Global Search Modal -->
     <div class="modal-overlay" id="searchModal" aria-label="Search Modal">
-        <div class="modal-container search-modal-container">
+        <div class="modal-container search-modal-container" data-lenis-prevent>
             <button type="button" class="modal-close-btn" id="closeSearchModal" aria-label="Close search">
                 <i data-lucide="x"></i>
             </button>
@@ -688,7 +688,7 @@
 
     <!-- 5. Quick View Modal -->
     <div class="modal-overlay" id="quickViewModal" aria-label="Quick View Modal">
-        <div class="modal-container">
+        <div class="modal-container" data-lenis-prevent>
             <button type="button" class="modal-close-btn" onclick="window.modCart.closeQuickView()" aria-label="Close Quick View">
                 <i data-lucide="x"></i>
             </button>
@@ -698,7 +698,7 @@
 
     <!-- 6. Demo Checkout Modal (3-Step Checkout Simulation) -->
     <div class="modal-overlay" id="checkoutModal" aria-label="Checkout Modal">
-        <div class="modal-container checkout-modal-container">
+        <div class="modal-container checkout-modal-container" data-lenis-prevent>
             <button type="button" class="modal-close-btn" onclick="window.modCart.closeCheckoutModal()" aria-label="Close checkout">
                 <i data-lucide="x"></i>
             </button>
@@ -923,6 +923,11 @@
                 }
             }
 
+            // Refresh Lenis & ScrollTrigger bounds after dynamic injection
+            if (window.modAnimations) {
+                window.modAnimations.refreshScroll();
+            }
+
             // Re-run Lucide icons
             if (window.lucide) {
                 window.lucide.createIcons();
@@ -931,3 +936,4 @@
     </script>
 </body>
 </html>
+

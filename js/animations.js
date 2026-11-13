@@ -22,86 +22,128 @@ class AnimationController {
         }
     }
 
+    // Refresh scroll limits and trigger bounds
+    refreshScroll() {
+        if (this.lenis) {
+            this.lenis.resize();
+        }
+        if (window.ScrollTrigger) {
+            ScrollTrigger.refresh();
+        }
+    }
+
     // Page Preloader
     initPreloader() {
         const preloader = document.getElementById('pagePreloader');
-        if (!preloader) return;
+        if (!preloader) {
+            document.body.classList.remove('loading');
+            return;
+        }
 
         const counterEl = document.getElementById('preloaderCounter');
         const barEl = document.getElementById('preloaderProgressBar');
         let count = 0;
 
         const updateCounter = () => {
-            const increment = Math.floor(Math.random() * 15) + 5;
+            const increment = Math.floor(Math.random() * 20) + 10;
             count = Math.min(100, count + increment);
 
             if (counterEl) counterEl.textContent = `${count}%`;
             if (barEl) barEl.style.width = `${count}%`;
 
             if (count < 100) {
-                setTimeout(updateCounter, 40);
+                setTimeout(updateCounter, 30);
             } else {
                 setTimeout(() => {
+                    document.body.classList.remove('loading');
                     if (window.gsap) {
                         gsap.to(preloader, {
                             yPercent: -100,
-                            duration: 0.9,
+                            duration: 0.7,
                             ease: 'power4.inOut',
                             onComplete: () => {
                                 preloader.style.display = 'none';
-                                document.body.classList.remove('loading');
                                 this.animateHeroEntrance();
+                                this.refreshScroll();
                             }
                         });
                     } else {
                         preloader.style.opacity = '0';
-                        setTimeout(() => preloader.style.display = 'none', 600);
-                        document.body.classList.remove('loading');
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                            this.refreshScroll();
+                        }, 500);
                     }
-                }, 200);
+                }, 100);
             }
         };
+
+        // Safety fallback: Never trap scroll if any CDN is slow
+        setTimeout(() => {
+            document.body.classList.remove('loading');
+            if (preloader && preloader.style.display !== 'none') {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    this.refreshScroll();
+                }, 400);
+            }
+        }, 1200);
 
         updateCounter();
     }
 
-    // Lenis Smooth Scroll
+    // Lenis Smooth Scroll (Unified single RAF loop without conflicting calls)
     initSmoothScroll() {
         if (typeof Lenis !== 'undefined') {
             try {
                 this.lenis = new Lenis({
-                    duration: 1.2,
+                    duration: 1.0,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    direction: 'vertical',
-                    gestureDirection: 'vertical',
-                    smooth: true,
-                    smoothTouch: false,
-                    touchMultiplier: 2
+                    orientation: 'vertical',
+                    gestureOrientation: 'vertical',
+                    smoothWheel: true,
+                    wheelMultiplier: 1.0,
+                    touchMultiplier: 1.5,
+                    infinite: false
                 });
 
-                const raf = (time) => {
-                    this.lenis.raf(time);
-                    requestAnimationFrame(raf);
-                };
-                requestAnimationFrame(raf);
-
-                // Connect to GSAP ScrollTrigger if present
-                if (window.ScrollTrigger) {
+                // Connect to GSAP ticker ONLY, avoiding double raf loop
+                if (window.gsap && window.ScrollTrigger) {
                     this.lenis.on('scroll', ScrollTrigger.update);
                     gsap.ticker.add((time) => {
                         this.lenis.raf(time * 1000);
                     });
                     gsap.ticker.lagSmoothing(0);
+                } else {
+                    const raf = (time) => {
+                        this.lenis.raf(time);
+                        requestAnimationFrame(raf);
+                    };
+                    requestAnimationFrame(raf);
                 }
+
+                // Automatic DOM resize tracking for dynamically loaded products
+                if (window.ResizeObserver) {
+                    const ro = new ResizeObserver(() => {
+                        this.refreshScroll();
+                    });
+                    ro.observe(document.body);
+                }
+
+                window.addEventListener('load', () => {
+                    this.refreshScroll();
+                });
+
             } catch (err) {
                 console.warn('Lenis initialization skipped:', err);
+                this.lenis = null;
             }
         }
     }
 
     // Custom Interactive Cursor
     initCustomCursor() {
-        // Disable on touch devices
         if (window.matchMedia('(pointer: coarse)').matches) return;
 
         const cursorDot = document.getElementById('customCursorDot');
@@ -117,9 +159,8 @@ class AnimationController {
             mouseX = e.clientX;
             mouseY = e.clientY;
             cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        });
+        }, { passive: true });
 
-        // Smooth trailing ring
         const loop = () => {
             ringX += (mouseX - ringX) * 0.15;
             ringY += (mouseY - ringY) * 0.15;
@@ -128,7 +169,6 @@ class AnimationController {
         };
         requestAnimationFrame(loop);
 
-        // Hover expansions
         const interactiveSelectors = 'a, button, input, select, textarea, .product-card, .category-card, .btn, .swatch-btn, .size-pill-btn';
         
         document.addEventListener('mouseover', (e) => {
@@ -233,7 +273,7 @@ class AnimationController {
                     });
                 }
             }
-        });
+        }, { passive: true });
 
         heroSection.addEventListener('mouseleave', () => {
             if (window.gsap) {
@@ -268,12 +308,12 @@ class AnimationController {
             gsap.from(el, {
                 scrollTrigger: {
                     trigger: el,
-                    start: 'top 85%',
+                    start: 'top 88%',
                     toggleActions: 'play none none none'
                 },
-                y: 50,
+                y: 40,
                 opacity: 0,
-                duration: 1,
+                duration: 0.9,
                 ease: 'power3.out'
             });
         });
@@ -281,18 +321,20 @@ class AnimationController {
         // Staggered cards reveal
         gsap.utils.toArray('.reveal-stagger-parent').forEach(parent => {
             const items = parent.querySelectorAll('.reveal-stagger-child');
-            gsap.from(items, {
-                scrollTrigger: {
-                    trigger: parent,
-                    start: 'top 82%',
-                    toggleActions: 'play none none none'
-                },
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: 'power3.out'
-            });
+            if (items.length > 0) {
+                gsap.from(items, {
+                    scrollTrigger: {
+                        trigger: parent,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.12,
+                    ease: 'power3.out'
+                });
+            }
         });
 
         // Parallax Promotional Banner Image
@@ -314,12 +356,12 @@ class AnimationController {
             gsap.from(img, {
                 scrollTrigger: {
                     trigger: img,
-                    start: 'top 80%',
+                    start: 'top 85%',
                     toggleActions: 'play none none none'
                 },
                 clipPath: 'inset(100% 0% 0% 0%)',
                 scale: 1.15,
-                duration: 1.4,
+                duration: 1.2,
                 ease: 'power4.out'
             });
         });
@@ -329,7 +371,6 @@ class AnimationController {
     initMarquee() {
         const marqueeTracks = document.querySelectorAll('.marquee-track');
         marqueeTracks.forEach(track => {
-            // Duplicate content for seamless loop
             const content = track.innerHTML;
             track.innerHTML = content + content;
         });

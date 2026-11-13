@@ -275,6 +275,11 @@ class ShopController {
         if (window.modCart) {
             window.modCart.updateWishlistIcons();
         }
+
+        // Refresh scroll limits after rendering products
+        if (window.modAnimations) {
+            window.modAnimations.refreshScroll();
+        }
     }
 
     renderActiveFilterChips() {
