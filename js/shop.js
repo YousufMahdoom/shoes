@@ -145,19 +145,35 @@ class ShopController {
         const openFilterBtn = document.getElementById('mobileFilterToggleBtn');
         const filterSidebar = document.getElementById('shopFilterSidebar');
         const closeFilterBtn = document.getElementById('closeFilterSidebar');
+        const filterOverlay = document.getElementById('filterSidebarOverlay');
+        const applyFiltersBtn = document.getElementById('applyFiltersBtn');
+
+        const closeFilterDrawer = () => {
+            if (filterSidebar) filterSidebar.classList.remove('open');
+            if (filterOverlay) filterOverlay.classList.remove('active');
+            document.body.classList.remove('drawer-open');
+        };
+
+        const openFilterDrawer = () => {
+            if (filterSidebar) filterSidebar.classList.add('open');
+            if (filterOverlay) filterOverlay.classList.add('active');
+            document.body.classList.add('drawer-open');
+        };
 
         if (openFilterBtn && filterSidebar) {
-            openFilterBtn.addEventListener('click', () => {
-                filterSidebar.classList.add('open');
-                document.body.classList.add('drawer-open');
-            });
+            openFilterBtn.addEventListener('click', openFilterDrawer);
         }
 
-        if (closeFilterBtn && filterSidebar) {
-            closeFilterBtn.addEventListener('click', () => {
-                filterSidebar.classList.remove('open');
-                document.body.classList.remove('drawer-open');
-            });
+        if (closeFilterBtn) {
+            closeFilterBtn.addEventListener('click', closeFilterDrawer);
+        }
+
+        if (filterOverlay) {
+            filterOverlay.addEventListener('click', closeFilterDrawer);
+        }
+
+        if (applyFiltersBtn) {
+            applyFiltersBtn.addEventListener('click', closeFilterDrawer);
         }
 
         // Grid layout columns switcher (3-col vs 4-col)

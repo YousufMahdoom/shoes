@@ -200,17 +200,20 @@ class AnimationController {
 
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-        tl.from('.hero-badge', {
-            y: 30,
-            opacity: 0,
-            duration: 0.8
-        })
-        .from('.hero-title .word', {
+        if (document.querySelector('.hero-badge')) {
+            tl.from('.hero-badge', {
+                y: 30,
+                opacity: 0,
+                duration: 0.8
+            });
+        }
+
+        tl.from('.hero-title .word', {
             y: 80,
             opacity: 0,
             duration: 1,
             stagger: 0.15
-        }, '-=0.5')
+        }, document.querySelector('.hero-badge') ? '-=0.5' : '+=0.1')
         .from('.hero-subtitle', {
             y: 30,
             opacity: 0,

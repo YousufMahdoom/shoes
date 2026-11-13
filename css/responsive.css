@@ -155,20 +155,70 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 320px;
+        width: min(340px, 86vw);
         height: 100%;
+        background-color: var(--color-bg-secondary);
+        border-right: 1px solid var(--color-border);
         z-index: 1002;
         transform: translateX(-100%);
         transition: transform var(--transition-normal);
         overflow-y: auto;
         border-radius: 0;
+        padding: 1.5rem 1.25rem 2.5rem;
+        box-shadow: 15px 0 40px rgba(0, 0, 0, 0.85);
     }
 
     .shop-filter-sidebar.open {
         transform: translateX(0);
     }
 
-    .mobile-filter-btn-wrap {
+    .shop-controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .shop-actions-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .shop-filter-btn {
+        display: inline-flex !important;
+        width: 100%;
+        height: 44px;
+        padding: 0 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .shop-sort-wrap {
+        width: 100%;
+        height: 44px;
+    }
+
+    .shop-sort-wrap .sort-label {
+        display: none;
+    }
+
+    .sort-select {
+        width: 100%;
+        height: 44px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 0 0.75rem;
+    }
+
+    .shop-meta-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .mobile-apply-filters-btn {
         display: block !important;
     }
 
@@ -393,6 +443,88 @@
 
     .modal-container {
         padding: 1.5rem;
+    }
+
+    /* Responsive Search Modal */
+    .search-modal-container {
+        width: 100%;
+        max-width: 520px;
+        padding: 1.25rem 1rem;
+        margin: 2.5rem auto auto auto;
+        border-radius: var(--radius-sm);
+    }
+
+    .search-modal-header {
+        margin-bottom: 0.85rem;
+        padding-bottom: 0.65rem;
+    }
+
+    .search-modal-title {
+        font-size: 0.78rem;
+    }
+
+    .search-modal-close-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .search-modal-close-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .site-search-input {
+        height: 48px;
+        font-size: 0.92rem;
+        padding: 0 1rem 0 2.8rem;
+    }
+
+    .search-input-icon {
+        left: 0.9rem;
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Shop Controls Fine-tuning for Mobile */
+    .shop-controls-bar {
+        gap: 0.65rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .shop-actions-bar {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .shop-filter-btn {
+        height: 42px;
+        font-size: 0.78rem;
+        padding: 0 0.5rem;
+    }
+
+    .shop-filter-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .sort-select {
+        height: 42px;
+        font-size: 0.78rem;
+        padding: 0 0.5rem;
+    }
+
+    .product-results-count {
+        font-size: 0.78rem;
+    }
+
+    .grid-layout-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .grid-layout-btn svg {
+        width: 15px;
+        height: 15px;
     }
 
     .payment-methods-grid {

@@ -524,12 +524,15 @@
 
     <!-- Search Modal -->
     <div class="modal-overlay" id="searchModal" aria-label="Search Modal">
-        <div class="modal-container search-modal-container">
-            <button type="button" class="modal-close-btn" id="closeSearchModal" aria-label="Close search">
-                <i data-lucide="x"></i>
-            </button>
+        <div class="modal-container search-modal-container" data-lenis-prevent>
+            <div class="search-modal-header">
+                <span class="search-modal-title">Search MOD Shoes</span>
+                <button type="button" class="search-modal-close-btn" id="closeSearchModal" aria-label="Close search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
             <div class="search-input-wrap">
-                <i data-lucide="search" class="search-input-icon"></i>
+                <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" class="site-search-input" id="siteSearchInput" placeholder="Search sneakers, formal shoes, runners...">
             </div>
             <div id="searchResultsList" class="search-results-list"></div>

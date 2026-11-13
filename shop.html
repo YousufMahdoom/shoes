@@ -168,12 +168,15 @@
         <!-- Main Shop Catalog Section -->
         <section class="container shop-main-layout">
             
+            <!-- Mobile Filter Drawer Backdrop Overlay -->
+            <div class="filter-backdrop-overlay" id="filterSidebarOverlay"></div>
+
             <!-- Left Filter Sidebar (Desktop sticky / Mobile slide-out) -->
-            <aside class="shop-filter-sidebar" id="shopFilterSidebar">
+            <aside class="shop-filter-sidebar" id="shopFilterSidebar" data-lenis-prevent>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;" class="mobile-only-header">
                     <h3 class="filter-heading" style="margin-bottom: 0;">Filters</h3>
                     <button type="button" class="drawer-close-btn" id="closeFilterSidebar" aria-label="Close filters">
-                        <i data-lucide="x"></i>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
                 </div>
 
@@ -257,30 +260,27 @@
                 <button type="button" class="btn btn-outline btn-sm btn-block" id="resetFiltersBtn" style="margin-top: 1rem;">
                     <i data-lucide="rotate-ccw"></i> Reset All Filters
                 </button>
+                <!-- Mobile Apply Filters Button -->
+                <button type="button" class="btn btn-primary btn-block mobile-apply-filters-btn" id="applyFiltersBtn" style="margin-top: 0.75rem;">
+                    Apply Filters
+                </button>
             </aside>
 
             <!-- Main Catalog Grid Area -->
             <div class="shop-content-area">
 
-                <!-- Controls Top Bar -->
+                <!-- Responsive Controls Top Bar -->
                 <div class="shop-controls-bar">
-                    <!-- Mobile Filter Drawer Trigger -->
-                    <div class="mobile-filter-btn-wrap" style="display: none;">
-                        <button type="button" class="btn btn-outline btn-sm" id="mobileFilterToggleBtn">
-                            <i data-lucide="sliders-horizontal"></i> Filters
+                    <!-- Action Bar (Filters + Sort for mobile & desktop) -->
+                    <div class="shop-actions-bar">
+                        <button type="button" class="shop-filter-btn" id="mobileFilterToggleBtn" aria-label="Open Filters">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><line x1="4" x2="20" y1="21" y2="21"/><line x1="4" x2="20" y1="14" y2="14"/><line x1="4" x2="20" y1="7" y2="7"/><circle cx="8" cy="7" r="2"/><circle cx="16" cy="14" r="2"/><circle cx="10" cy="21" r="2"/></svg>
+                            <span>Filters</span>
                         </button>
-                    </div>
 
-                    <!-- Live Count Indicator -->
-                    <div id="productResultsCount" style="font-size: 0.9rem; color: var(--color-text-secondary);">
-                        Showing <strong>16</strong> of <strong>16</strong> products
-                    </div>
-
-                    <!-- Sort & Grid View Toggles -->
-                    <div style="display: flex; align-items: center; gap: 1rem;">
                         <div class="shop-sort-wrap">
-                            <label for="shopSortSelect" style="font-size: 0.8rem; color: var(--color-text-muted);">Sort By:</label>
-                            <select id="shopSortSelect" class="sort-select">
+                            <label for="shopSortSelect" class="sort-label">Sort By:</label>
+                            <select id="shopSortSelect" class="sort-select" aria-label="Sort products">
                                 <option value="featured">Featured Drops</option>
                                 <option value="newest">Newest Arrivals</option>
                                 <option value="price-asc">Price: Low to High</option>
@@ -288,14 +288,20 @@
                                 <option value="rating">Top Customer Rated</option>
                             </select>
                         </div>
+                    </div>
 
-                        <!-- Column View Toggles -->
+                    <!-- Meta Bar (Results Count + View Toggles) -->
+                    <div class="shop-meta-bar">
+                        <div id="productResultsCount" class="product-results-count">
+                            Showing <strong>16</strong> of <strong>16</strong> products
+                        </div>
+
                         <div class="grid-view-toggles">
                             <button type="button" class="grid-layout-btn" data-cols="3" aria-label="3 columns">
-                                <i data-lucide="grid-3x3"></i>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
                             </button>
                             <button type="button" class="grid-layout-btn active" data-cols="4" aria-label="4 columns">
-                                <i data-lucide="layout-grid"></i>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="4" height="4" x="3" y="3" rx="1"/><rect width="4" height="4" x="10" y="3" rx="1"/><rect width="4" height="4" x="17" y="3" rx="1"/><rect width="4" height="4" x="3" y="10" rx="1"/><rect width="4" height="4" x="10" y="10" rx="1"/><rect width="4" height="4" x="17" y="10" rx="1"/><rect width="4" height="4" x="3" y="17" rx="1"/><rect width="4" height="4" x="10" y="17" rx="1"/><rect width="4" height="4" x="17" y="17" rx="1"/></svg>
                             </button>
                         </div>
                     </div>
@@ -464,12 +470,15 @@
 
     <!-- Search Modal -->
     <div class="modal-overlay" id="searchModal" aria-label="Search Modal">
-        <div class="modal-container search-modal-container">
-            <button type="button" class="modal-close-btn" id="closeSearchModal" aria-label="Close search">
-                <i data-lucide="x"></i>
-            </button>
+        <div class="modal-container search-modal-container" data-lenis-prevent>
+            <div class="search-modal-header">
+                <span class="search-modal-title">Search MOD Shoes</span>
+                <button type="button" class="search-modal-close-btn" id="closeSearchModal" aria-label="Close search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
             <div class="search-input-wrap">
-                <i data-lucide="search" class="search-input-icon"></i>
+                <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" class="site-search-input" id="siteSearchInput" placeholder="Search sneakers, formal shoes, runners...">
             </div>
             <div id="searchResultsList" class="search-results-list"></div>
