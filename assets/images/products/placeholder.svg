@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#0A0A0A" />
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C8B69A" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" />
+  <circle cx="400" cy="300" r="180" fill="#C8B69A" opacity="0.04" />
+  <!-- Minimalist Architectural Sneaker Silhouette -->
+  <g transform="translate(160, 160)" stroke="url(#accentGlow)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 60 220 Q 90 200 130 190 L 210 130 Q 250 100 290 120 L 320 150 Q 360 170 410 175 Q 430 185 430 200 Q 425 220 380 230 L 70 235 Z" fill="rgba(200, 182, 154, 0.05)" />
+    <!-- Midsole / Outsole -->
+    <path d="M 60 225 L 430 225 Q 435 245 410 250 L 70 250 Q 55 245 60 225 Z" fill="rgba(200, 182, 154, 0.15)" />
+    <!-- Dynamic Aerodynamic Swoop Lines -->
+    <path d="M 120 205 Q 220 180 320 160" stroke="#C8B69A" stroke-width="1.8" />
+    <path d="M 180 150 Q 240 180 340 195" stroke="#C8B69A" stroke-width="1.2" opacity="0.6" />
+    <circle cx="210" cy="130" r="3" fill="#C8B69A" />
+    <circle cx="235" cy="142" r="3" fill="#C8B69A" />
+    <circle cx="260" cy="154" r="3" fill="#C8B69A" />
+  </g>
+  <text x="400" y="470" font-family="'Space Grotesk', 'Syne', sans-serif" font-size="16" font-weight="700" letter-spacing="4" fill="#C8B69A" text-anchor="middle" text-transform="uppercase">MOD SHOES ATELIER</text>
+  <text x="400" y="495" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" letter-spacing="2" fill="#666666" text-anchor="middle">AERODYNAMIC SILHOUETTES • MILAN &amp; TOKYO</text>
+</svg>
