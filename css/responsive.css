@@ -66,8 +66,16 @@
     }
 
     .hero-shoe-centerpiece {
-        max-width: 340px;
+        max-width: 480px;
+        width: 88%;
         margin: 0 auto;
+    }
+
+    .hero-shoe-centerpiece img {
+        width: 100%;
+        max-height: 360px;
+        height: auto;
+        object-fit: contain;
     }
 
     .hero-text-content {
@@ -263,20 +271,31 @@
 
     .hero-visual-stage {
         order: 1 !important; /* HERO SHOE IMAGE DISPLAYED FIRST */
-        margin: 0 auto;
+        margin: 0 auto 0.8rem;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-shoe-centerpiece {
-        max-width: 290px;
+        max-width: 380px;
+        width: 94%;
         margin: 0 auto;
+        filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.9));
     }
 
     .hero-shoe-centerpiece img {
-        max-height: 220px;
-        width: auto;
+        max-height: 310px;
+        width: 100%;
+        height: auto;
         margin: 0 auto;
         object-fit: contain;
+    }
+
+    .hero-glow-orb {
+        width: 260px;
+        height: 260px;
     }
 
     .hero-text-content {
@@ -430,12 +449,15 @@
     }
 
     .hero-shoe-centerpiece {
-        max-width: 250px;
+        max-width: 340px;
+        width: 95%;
         margin: 0 auto;
     }
 
     .hero-shoe-centerpiece img {
-        max-height: 190px;
+        max-height: 280px;
+        width: 100%;
+        height: auto;
     }
 
     .btn {
