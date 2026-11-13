@@ -77,23 +77,71 @@
     </header>
 
     <!-- Mobile Navigation Drawer -->
-    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" data-lenis-prevent>
         <div class="mobile-nav-header">
             <a href="index.html" class="brand-logo">MOD<span class="logo-accent">.</span>SHOES</a>
             <button type="button" class="drawer-close-btn" id="closeMobileNav" aria-label="Close menu">
-                <i data-lucide="x"></i>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
         </div>
-        <ul class="mobile-nav-list">
-            <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link">Home</a></li>
-            <li class="mobile-nav-item"><a href="shop.html" class="mobile-nav-link">Shop Collection</a></li>
-            <li class="mobile-nav-item"><a href="shop.html?category=Sneakers" class="mobile-nav-link">Sneakers</a></li>
-            <li class="mobile-nav-item"><a href="shop.html?category=Sports%20Shoes" class="mobile-nav-link">Sports &amp; Runners</a></li>
-            <li class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">Brand Story</a></li>
-            <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact &amp; Flagship</a></li>
-        </ul>
+        <div class="mobile-nav-body">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="index.html" class="mobile-nav-link">
+                        <span class="nav-link-text">Home</span>
+                        <span class="nav-link-num">01</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="shop.html" class="mobile-nav-link">
+                        <span class="nav-link-text">Shop Collection</span>
+                        <span class="nav-link-num">02</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="shop.html?category=Sneakers" class="mobile-nav-link">
+                        <span class="nav-link-text">Sneakers</span>
+                        <span class="nav-link-num">03</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="shop.html?category=Sports%20Shoes" class="mobile-nav-link">
+                        <span class="nav-link-text">Sports &amp; Runners</span>
+                        <span class="nav-link-num">04</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">
+                        <span class="nav-link-text">Brand Story</span>
+                        <span class="nav-link-num">05</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="contact.html" class="mobile-nav-link">
+                        <span class="nav-link-text">Contact &amp; Flagship</span>
+                        <span class="nav-link-num">06</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="mobile-nav-quick-actions">
+                <button type="button" class="mobile-action-chip" onclick="window.modCart.openSearchModal(); document.getElementById('closeMobileNav').click();">
+                    <i data-lucide="search"></i> Search Shoes
+                </button>
+                <button type="button" class="mobile-action-chip" onclick="window.modCart.openCart(); document.getElementById('closeMobileNav').click();">
+                    <i data-lucide="shopping-bag"></i> Bag (<span class="cart-count-badge" style="display:inline;">0</span>)
+                </button>
+            </div>
+        </div>
+
         <div class="mobile-nav-footer">
-            <span class="copyright-text">MOD SHOES &copy; 2026</span>
+            <div>
+                <span class="mobile-footer-tag">MOD ATELIER • COLOMBO</span>
+                <span class="copyright-text" style="display:block; font-size: 0.72rem; color: var(--color-text-muted);">&copy; 2026 MOD SHOES</span>
+            </div>
             <div class="footer-social-links">
                 <a href="#" class="footer-social-btn" aria-label="Instagram"><i data-lucide="instagram"></i></a>
                 <a href="#" class="footer-social-btn" aria-label="Twitter"><i data-lucide="twitter"></i></a>
