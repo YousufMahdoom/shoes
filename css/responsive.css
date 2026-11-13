@@ -29,15 +29,53 @@
         display: none; /* Collapsed to mobile hamburger */
     }
 
-    .hamburger-btn {
-        display: inline-flex;
+    .nav-actions {
+        gap: 0.5rem;
     }
 
-    /* Hero Section */
+    .nav-icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hamburger-btn {
+        display: inline-flex !important;
+        width: 38px;
+        height: 38px;
+        color: var(--color-text-primary);
+        z-index: 102;
+    }
+
+    /* Hero Section - Image comes FIRST, details come SECOND */
+    .hero-section {
+        padding: 3rem 0 4rem;
+        min-height: auto;
+    }
+
     .hero-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         text-align: center;
-        gap: 2.5rem;
+        gap: 2rem;
+    }
+
+    .hero-visual-stage {
+        order: 1; /* HERO SHOE IMAGE FIRST */
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .hero-shoe-centerpiece {
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .hero-text-content {
+        order: 2; /* HERO DETAILS AFTER IMAGE */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     .hero-badge {
@@ -50,10 +88,6 @@
 
     .hero-actions {
         justify-content: center;
-    }
-
-    .hero-visual-stage {
-        margin-top: 1rem;
     }
 
     .hero-floating-tag {
@@ -164,24 +198,121 @@
 /* Mobile Phones (max 767px) */
 @media (max-width: 767px) {
     .container {
-        padding: 0 1.2rem;
+        padding: 0 1rem;
+    }
+
+    /* Mobile Header Layout - Ensure all icons & hamburger are completely visible */
+    .brand-logo {
+        font-size: 1.22rem;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .nav-icon-btn {
+        width: 35px;
+        height: 35px;
+        flex-shrink: 0;
+    }
+
+    .nav-icon-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .hamburger-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        color: var(--color-text-primary);
+        z-index: 105;
+        cursor: pointer;
+    }
+
+    .hamburger-btn svg {
+        width: 22px;
+        height: 22px;
+        stroke-width: 2.2;
     }
 
     .section-header-row {
         margin-bottom: 2rem;
     }
 
+    /* Hero Section - Shoe Image FIRST, Details SECOND */
     .hero-section {
-        padding: 3rem 0 4rem;
+        padding: 1.5rem 0 3.5rem;
         min-height: auto;
     }
 
-    .hero-title {
-        font-size: 2.6rem;
+    .hero-grid {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .hero-visual-stage {
+        order: 1 !important; /* HERO SHOE IMAGE DISPLAYED FIRST */
+        margin: 0 auto;
+        width: 100%;
     }
 
     .hero-shoe-centerpiece {
-        max-width: 380px;
+        max-width: 290px;
+        margin: 0 auto;
+    }
+
+    .hero-shoe-centerpiece img {
+        max-height: 220px;
+        width: auto;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+    .hero-text-content {
+        order: 2 !important; /* HERO DETAILS DISPLAYED AFTER IMAGE */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-badge {
+        margin-bottom: 0.8rem;
+        font-size: 0.68rem;
+        padding: 0.35rem 0.8rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8.5vw, 2.7rem);
+        line-height: 1.05;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.92rem;
+        max-width: 340px;
+        margin: 0 auto 1.6rem;
+        line-height: 1.5;
+    }
+
+    .hero-actions {
+        width: 100%;
+        gap: 0.8rem;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
     }
 
     .categories-grid {
@@ -276,8 +407,35 @@
 
 /* Small Mobile (max 480px) */
 @media (max-width: 480px) {
+    .brand-logo {
+        font-size: 1.15rem;
+    }
+
+    .nav-actions {
+        gap: 0.15rem;
+    }
+
+    .nav-icon-btn {
+        width: 33px;
+        height: 33px;
+    }
+
+    .hamburger-btn {
+        width: 34px;
+        height: 34px;
+    }
+
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
+    }
+
+    .hero-shoe-centerpiece {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .hero-shoe-centerpiece img {
+        max-height: 190px;
     }
 
     .btn {
