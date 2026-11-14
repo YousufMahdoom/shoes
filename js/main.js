@@ -73,7 +73,7 @@ function renderProductCard(product) {
 }
 
 // Global App Initialization
-class ModShoesApp {
+class ShoesApp {
     constructor() {
         this.init();
     }
@@ -310,5 +310,5 @@ class ModShoesApp {
 
 // Instantiate on document ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.modApp = new ModShoesApp();
+    window.modApp = new ShoesApp();
 });

@@ -770,7 +770,7 @@ class CartManager {
         const orderTotalEl = document.getElementById('confirmedOrderTotal');
 
         if (orderNumEl) orderNumEl.textContent = orderNumber;
-        if (orderEmailEl) orderEmailEl.textContent = formData.get('email') || 'customer@modshoes.lk';
+        if (orderEmailEl) orderEmailEl.textContent = formData.get('email') || 'customer@Shoes.lk';
         if (orderTotalEl) orderTotalEl.textContent = orderTotal;
 
         // Clear cart
