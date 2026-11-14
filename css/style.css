@@ -3107,11 +3107,96 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-accent);
 }
 
+/* Product Description Container with Show More / Show Less Toggle */
+.pd-description-container {
+    margin: 1.2rem 0 1.5rem;
+    position: relative;
+}
+
+.pd-description-body {
+    position: relative;
+    max-height: 90px;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pd-description-container:not(.expanded) .pd-description-body::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(14, 14, 14, 0) 0%, rgba(14, 14, 14, 0.95) 100%);
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+}
+
+.pd-description-container.expanded .pd-description-body {
+    max-height: 800px;
+}
+
+.pd-desc-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+    padding: 0.35rem 0.85rem;
+    background-color: rgba(200, 182, 154, 0.08);
+    border: 1px solid rgba(200, 182, 154, 0.25);
+    border-radius: var(--radius-full);
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.pd-desc-toggle-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+    border-color: var(--color-accent);
+}
+
+.desc-toggle-icon {
+    transition: transform var(--transition-normal);
+}
+
+.pd-description-container.expanded .desc-toggle-icon {
+    transform: rotate(180deg);
+}
+
 .pd-actions-group {
     display: flex;
     gap: 1rem;
     margin: 2rem 0;
     align-items: center;
+}
+
+.pd-actions-group .quantity-stepper {
+    height: 52px;
+}
+
+.pd-actions-group .pd-add-btn {
+    flex-grow: 1;
+    height: 52px;
+}
+
+.pd-actions-group .pd-wish-btn {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pd-actions-group .pd-buy-btn {
+    height: 52px;
+    min-width: 140px;
 }
 
 .pd-specs-table {

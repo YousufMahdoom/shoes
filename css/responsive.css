@@ -645,37 +645,79 @@
     }
 
     /* Product Details Page (PDP) Mobile Layout */
+    .pd-description-body {
+        max-height: 75px; /* Clean 2-3 line clamp on mobile screens */
+    }
+
     .pd-actions-group {
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto 1fr 48px;
         gap: 0.6rem;
         width: 100%;
         margin: 1.5rem 0;
+        align-items: center;
     }
 
-    .pd-actions-group .stepper-wrap {
+    .pd-actions-group .quantity-stepper {
         grid-column: 1;
+        grid-row: 1;
+        height: 48px !important;
+    }
+
+    .pd-actions-group .quantity-stepper .stepper-btn {
+        width: 32px;
+    }
+
+    .pd-actions-group .quantity-stepper .stepper-value {
+        width: 34px;
+        font-size: 0.9rem;
     }
 
     .pd-actions-group #pdAddToCartBtn {
         grid-column: 2;
+        grid-row: 1;
         width: 100%;
-        height: 48px;
-        font-size: 0.85rem;
-        padding: 0 0.8rem;
+        height: 48px !important;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding: 0 0.6rem;
+        white-space: nowrap;
+    }
+
+    .pd-actions-group #pdAddToCartBtn i,
+    .pd-actions-group #pdAddToCartBtn svg {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
     }
 
     .pd-actions-group #pdWishlistBtn {
         grid-column: 3;
-        width: 48px;
-        height: 48px;
+        grid-row: 1;
+        width: 48px !important;
+        height: 48px !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        margin: 0 !important;
+        border-radius: var(--radius-sm);
+    }
+
+    .pd-actions-group #pdWishlistBtn svg {
+        width: 20px;
+        height: 20px;
     }
 
     .pd-actions-group #pdBuyNowBtn {
         grid-column: 1 / -1;
+        grid-row: 2;
         width: 100%;
-        height: 48px;
+        height: 48px !important;
         font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin: 0 !important;
     }
 
     .pd-trust-box {

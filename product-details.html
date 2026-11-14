@@ -204,12 +204,20 @@
                         <span class="original-price" id="pdOriginalPrice" style="font-size: 1.2rem;">Rs. 28,000</span>
                     </div>
 
-                    <!-- Short Description & Highlights -->
-                    <p class="qv-desc" id="pdDescription" style="font-size: 1rem;"></p>
-                    <ul class="pd-highlights-list" id="pdHighlights"></ul>
+                    <!-- Short Description & Highlights with Show More/Less toggle -->
+                    <div class="pd-description-container" id="pdDescContainer">
+                        <div class="pd-description-body" id="pdDescBody">
+                            <p class="qv-desc" id="pdDescription" style="font-size: 1rem;"></p>
+                            <ul class="pd-highlights-list" id="pdHighlights"></ul>
+                        </div>
+                        <button type="button" class="pd-desc-toggle-btn" id="pdDescToggleBtn" aria-expanded="false" aria-controls="pdDescBody">
+                            <span class="desc-toggle-text">Show More</span>
+                            <svg class="desc-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
 
                     <!-- Color Swatches -->
-                    <div class="qv-option-group" style="margin-top: 2rem;">
+                    <div class="qv-option-group" style="margin-top: 1.5rem;">
                         <label class="option-label">
                             Colorway: <strong id="pdSelectedColorName" style="color: var(--color-text-primary);">Obsidian Black</strong>
                         </label>
@@ -233,24 +241,24 @@
                         </div>
                     </div>
 
-                    <!-- Actions Row (Quantity Stepper, Add to Bag, Buy Now, Wishlist) -->
+                    <!-- Actions Row (Quantity Stepper, Add to Bag, Wishlist, Buy Now) -->
                     <div class="pd-actions-group">
-                        <div class="quantity-stepper" style="height: 52px;">
-                            <button type="button" class="stepper-btn" id="pdQtyMinus" style="width: 38px; font-size: 1.1rem;">-</button>
-                            <span class="stepper-value" id="pdQtyVal" style="width: 44px; font-size: 0.95rem;">1</span>
-                            <button type="button" class="stepper-btn" id="pdQtyPlus" style="width: 38px; font-size: 1.1rem;">+</button>
+                        <div class="quantity-stepper">
+                            <button type="button" class="stepper-btn" id="pdQtyMinus" aria-label="Decrease quantity">-</button>
+                            <span class="stepper-value" id="pdQtyVal">1</span>
+                            <button type="button" class="stepper-btn" id="pdQtyPlus" aria-label="Increase quantity">+</button>
                         </div>
 
-                        <button type="button" class="btn btn-primary" id="pdAddToCartBtn" style="flex-grow: 1; height: 52px;">
+                        <button type="button" class="btn btn-primary pd-add-btn" id="pdAddToCartBtn">
                             <i data-lucide="shopping-bag"></i> Add to Bag
                         </button>
 
-                        <button type="button" class="btn btn-accent" id="pdBuyNowBtn" style="height: 52px;">
-                            Buy Now
+                        <button type="button" class="card-action-btn favorite-toggle-btn pd-wish-btn" id="pdWishlistBtn" title="Save to Wishlist" aria-label="Save to Wishlist">
+                            <i data-lucide="heart"></i>
                         </button>
 
-                        <button type="button" class="card-action-btn favorite-toggle-btn" id="pdWishlistBtn" style="width: 52px; height: 52px;" title="Save to Wishlist" aria-label="Save to Wishlist">
-                            <i data-lucide="heart"></i>
+                        <button type="button" class="btn btn-accent pd-buy-btn" id="pdBuyNowBtn">
+                            Buy Now
                         </button>
                     </div>
 

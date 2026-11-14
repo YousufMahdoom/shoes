@@ -315,6 +315,31 @@ class ProductDetailsController {
                 }
             });
         }
+
+        // Description Show More / Show Less Toggle
+        const descToggleBtn = document.getElementById('pdDescToggleBtn');
+        const descContainer = document.getElementById('pdDescContainer');
+        const descTextSpan = descToggleBtn ? descToggleBtn.querySelector('.desc-toggle-text') : null;
+
+        if (descToggleBtn && descContainer) {
+            descToggleBtn.addEventListener('click', () => {
+                const isExpanded = descContainer.classList.contains('expanded');
+                if (isExpanded) {
+                    descContainer.classList.remove('expanded');
+                    descToggleBtn.setAttribute('aria-expanded', 'false');
+                    if (descTextSpan) descTextSpan.textContent = 'Show More';
+                } else {
+                    descContainer.classList.add('expanded');
+                    descToggleBtn.setAttribute('aria-expanded', 'true');
+                    if (descTextSpan) descTextSpan.textContent = 'Show Less';
+                }
+
+                // Refresh Lenis / ScrollTrigger after DOM height change
+                setTimeout(() => {
+                    if (window.modAnimations) window.modAnimations.refreshScroll();
+                }, 400);
+            });
+        }
     }
 
     renderRelatedProducts() {
