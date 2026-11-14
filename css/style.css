@@ -3188,3 +3188,84 @@ h1, h2, h3, h4, h5, h6 {
 .accordion-item.open .accordion-icon {
     transform: rotate(180deg);
 }
+
+/* ==========================================================================
+   ABOUT & CONTACT PAGE LAYOUT UTILITIES
+   ========================================================================== */
+.about-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.about-pillar-card {
+    padding: 2rem;
+}
+
+.about-lookbook-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.about-lookbook-grid .lookbook-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 420px;
+}
+
+.about-lookbook-grid .lookbook-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.about-lookbook-grid .lookbook-item:hover img {
+    transform: scale(1.05);
+}
+
+.contact-channels-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-channel-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+}
+
+.contact-hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-form-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+}
+
+.pd-trust-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.2rem;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    margin: 2rem 0;
+}
+
+.pd-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.82rem;
+}
